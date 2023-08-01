@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  ResponsiveContainer,
   CartesianGrid,
   Legend,
   Line,
@@ -11,7 +12,7 @@ import {
   YAxis,
 } from "recharts";
 
-const refLine = 100;
+const refLine = 80;
 const data = [
   {
     month: "jan",
@@ -62,6 +63,10 @@ const data = [
 /**
  *  This is a custom chart component that explain how to use a line chart with refrence area and refrence line
  *
+ * @RespponsiveContainer : This is a wrapper that makes the chart responsive according to the screen size
+ *
+ * 1) Height & width : one of the height or width must be a precentage string in order to make the chart responsive
+ *
  * @RefrenceLine : This is the component thats takes a point on x or y axis and creates a refrence line we can customise the line and my making it dashed or changing the color along with many other properties
  *
  * 1) y : specifies the point on y axis for the refrence line
@@ -88,35 +93,37 @@ const data = [
 export const Recharts = () => {
   return (
     <div style={{ padding: "25px", margin: "20px auto" }}>
-      <LineChart
-        width={1000}
-        height={350}
-        data={data}
-        margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="month" />
-        <YAxis dataKey="weight" />
-        <Tooltip />
-        <Legend />
+      <ResponsiveContainer width="90%" height={300}>
+        <LineChart
+          //   width={1000}
+          //   height={350}
+          data={data}
+          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="month" />
+          <YAxis dataKey="weight" />
+          <Tooltip />
+          <Legend />
 
-        <ReferenceLine y={refLine} stroke="#a476ff" />
-        <ReferenceArea
-          y1={refLine - 10}
-          y2={refLine + 10}
-          stroke="purple"
-          fill={"#F4E3FF"}
-          strokeOpacity={0}
-        />
-        <Line
-          type="monotone"
-          dataKey="weight"
-          stroke="#8884d8"
-          dot={{ fill: "purple", r: 5, strokeDasharray: "0 0" }}
-          activeDot={{ fill: "purple", r: 6 }}
-          strokeDasharray="2.5 2.5"
-        />
-      </LineChart>
+          <ReferenceLine y={refLine} stroke="#a476ff" />
+          <ReferenceArea
+            y1={refLine - 10}
+            y2={refLine + 10}
+            stroke="purple"
+            fill={"#F4E3FF"}
+            strokeOpacity={0}
+          />
+          <Line
+            type="monotone"
+            dataKey="weight"
+            stroke="#8884d8"
+            dot={{ fill: "purple", r: 5, strokeDasharray: "0 0" }}
+            activeDot={{ fill: "purple", r: 6 }}
+            strokeDasharray="2.5 2.5"
+          />
+        </LineChart>
+      </ResponsiveContainer>
     </div>
   );
 };
