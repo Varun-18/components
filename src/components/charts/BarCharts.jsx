@@ -30,7 +30,7 @@ const data = [
   },
   {
     weekDay: "Tue",
-    value: 1,
+    value: 15,
   },
   {
     weekDay: "Wed",
