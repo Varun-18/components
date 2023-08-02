@@ -1,9 +1,9 @@
-import { Recharts } from "./components/charts/Recharts";
+import Charts from "./components/charts";
 
 function App() {
   return (
     <div className="App">
-      <Recharts />
+      <Charts />
     </div>
   );
 }
